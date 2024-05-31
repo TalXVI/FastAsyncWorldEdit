@@ -118,7 +118,7 @@ public class RegionCommands {
             Actor actor, EditSession editSession,
             @Selection Region region,
             @Arg(desc = "The pattern of blocks to set")
-            Pattern pattern
+                    Pattern pattern
     ) {
         int affected = editSession.setBlocks(region, pattern);
         if (affected != 0) {
@@ -233,11 +233,11 @@ public class RegionCommands {
             Actor actor, EditSession editSession,
             @Selection Region region,
             @Arg(desc = "The pattern of blocks to place")
-            Pattern pattern,
+                    Pattern pattern,
             @Arg(desc = "The thickness of the line", def = "0")
-            int thickness,
+                    int thickness,
             @Switch(name = 'h', desc = "Generate only a shell")
-            boolean shell
+                    boolean shell
     ) throws WorldEditException {
         if (!(region instanceof CuboidRegion cuboidregion)) {
             actor.print(Caption.of("worldedit.line.cuboid-only"));
@@ -266,11 +266,11 @@ public class RegionCommands {
             Actor actor, EditSession editSession,
             @Selection Region region,
             @Arg(desc = "The pattern of blocks to place")
-            Pattern pattern,
+                    Pattern pattern,
             @Arg(desc = "The thickness of the curve", def = "0")
-            int thickness,
+                    int thickness,
             @Switch(name = 'h', desc = "Generate only a shell")
-            boolean shell
+                    boolean shell
     ) throws WorldEditException {
         if (!(region instanceof ConvexPolyhedralRegion cpregion)) {
             actor.print(Caption.of("worldedit.curve.invalid-type"));
@@ -298,9 +298,9 @@ public class RegionCommands {
     public int replace(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "The mask representing blocks to replace", def = "")
-            Mask from,
+                    Mask from,
             @Arg(desc = "The pattern of blocks to replace with")
-            Pattern to
+                    Pattern to
     ) throws WorldEditException {
         if (from == null) {
             from = new ExistingBlockMask(editSession);
@@ -324,7 +324,7 @@ public class RegionCommands {
     public int overlay(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "The pattern of blocks to overlay")
-            Pattern pattern
+                    Pattern pattern
     ) throws WorldEditException {
         int affected = editSession.overlayCuboidBlocks(region, pattern);
         actor.print(Caption.of("worldedit.overlay.overlaid", TextComponent.of(affected)));
@@ -380,7 +380,7 @@ public class RegionCommands {
     public int center(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "The pattern of blocks to set")
-            Pattern pattern
+                    Pattern pattern
     ) throws WorldEditException {
         int affected = editSession.center(region, pattern);
         actor.print(Caption.of("worldedit.center.changed", TextComponent.of(affected)));
@@ -412,7 +412,7 @@ public class RegionCommands {
     public int walls(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "The pattern of blocks to set")
-            Pattern pattern
+                    Pattern pattern
     ) throws WorldEditException {
         int affected = editSession.makeWalls(region, pattern);
         actor.print(Caption.of("worldedit.walls.changed", TextComponent.of(affected)));
@@ -431,7 +431,7 @@ public class RegionCommands {
     public int faces(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "The pattern of blocks to set")
-            Pattern pattern
+                    Pattern pattern
     ) throws WorldEditException {
         int affected = editSession.makeFaces(region, pattern);
         actor.print(Caption.of("worldedit.faces.changed", TextComponent.of(affected)));
@@ -451,9 +451,9 @@ public class RegionCommands {
     public int smooth(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "# of iterations to perform", def = "1")
-            int iterations,
+                    int iterations,
             @Arg(desc = "The mask of blocks to use as the height map", def = "")
-            Mask mask
+                    Mask mask
     ) throws WorldEditException {
         //FAWE start > the mask will have been initialised with a WorldWrapper extent (very bad/slow)
         new MaskTraverser(mask).setNewExtent(editSession);
@@ -526,11 +526,11 @@ public class RegionCommands {
     public int snowSmooth(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "# of iterations to perform", def = "1")
-            int iterations,
+                    int iterations,
             @ArgFlag(name = 'l', desc = "Set the amount of snow blocks under the snow", def = "1")
-            int snowBlockCount,
+                    int snowBlockCount,
             @ArgFlag(name = 'm', desc = "The mask of blocks to use as the height map")
-            Mask mask
+                    Mask mask
     ) throws WorldEditException {
         SnowHeightMap heightMap = new SnowHeightMap(editSession, region, mask);
         HeightMapFilter filter = new HeightMapFilter(new GaussianKernel(5, 1.0));
@@ -554,22 +554,22 @@ public class RegionCommands {
             Actor actor, World world, EditSession editSession, LocalSession session,
             @Selection Region region,
             @Arg(desc = "# of blocks to move", def = "1")
-            int count,
+                    int count,
             @Arg(desc = "The direction to move", def = Direction.AIM)
             @Direction(includeDiagonals = true)
-            BlockVector3 direction,
+                    BlockVector3 direction,
             @Arg(desc = "The pattern of blocks to leave", def = "air")
-            Pattern replace,
+                    Pattern replace,
             @Switch(name = 's', desc = "Shift the selection to the target location")
-            boolean moveSelection,
+                    boolean moveSelection,
             @Switch(name = 'a', desc = "Ignore air blocks")
-            boolean ignoreAirBlocks,
+                    boolean ignoreAirBlocks,
             @Switch(name = 'e', desc = "Also copy entities")
-            boolean copyEntities,
+                    boolean copyEntities,
             @Switch(name = 'b', desc = "Also copy biomes")
-            boolean copyBiomes,
+                    boolean copyBiomes,
             @ArgFlag(name = 'm', desc = "Set the include mask, non-matching blocks become air")
-            Mask mask
+                    Mask mask
     ) throws WorldEditException {
         checkCommandArgument(count >= 1, "Multiplier must be >= 1");
 
@@ -618,9 +618,9 @@ public class RegionCommands {
             Actor actor, EditSession editSession,
             @Selection Region region,
             @Arg(desc = "BlockStateHolder", def = "air")
-            BlockStateHolder replace,
+                    BlockStateHolder replace,
             @Switch(name = 'm', desc = "Only fall within the vertical selection")
-            boolean notFullHeight
+                    boolean notFullHeight
     ) throws WorldEditException {
         int affected = editSession.fall(region, !notFullHeight, replace);
         actor.print(Caption.of("fawe.worldedit.visitor.visitor.block", affected));
@@ -639,20 +639,20 @@ public class RegionCommands {
             @Selection Region region,
             @Arg(desc = "# of copies to stack", def = "1")
             @Confirm(Confirm.Processor.REGION)
-            int count,
+                    int count,
             @Arg(desc = "How far to move the contents each stack", def = Offset.FORWARD)
             @Offset
-            BlockVector3 direction,
+                    BlockVector3 direction,
             @Switch(name = 's', desc = "Shift the selection to the last stacked copy")
-            boolean moveSelection,
+                    boolean moveSelection,
             @Switch(name = 'a', desc = "Ignore air blocks")
-            boolean ignoreAirBlocks,
+                    boolean ignoreAirBlocks,
             @Switch(name = 'e', desc = "Also copy entities")
-            boolean copyEntities,
+                    boolean copyEntities,
             @Switch(name = 'b', desc = "Also copy biomes")
-            boolean copyBiomes,
+                    boolean copyBiomes,
             @ArgFlag(name = 'm', desc = "Set the include mask, non-matching blocks become air")
-            Mask mask
+                    Mask mask
     ) throws WorldEditException {
         checkCommandArgument(count >= 1, "Count must be >= 1");
 
@@ -704,13 +704,13 @@ public class RegionCommands {
             Actor actor, World world, LocalSession session, EditSession editSession,
             @Selection Region region,
             @Arg(desc = "The seed to regenerate with, otherwise uses world seed", def = "")
-            Long seed,
+                    Long seed,
             @Switch(name = 'b', desc = "Regenerate biomes as well")
-            boolean regenBiomes,
+                    boolean regenBiomes,
             @Switch(name = 'r', desc = "If the seed should be randomized")
-            boolean randomSeed,
+                    boolean randomSeed,
             @Arg(desc = "Biome to apply for this regeneration (only works in overworld)", def = "")
-            BiomeType biomeType
+                    BiomeType biomeType
     ) throws WorldEditException {
         Mask mask = session.getMask();
         boolean success;
@@ -759,13 +759,13 @@ public class RegionCommands {
             Actor actor, LocalSession session, EditSession editSession,
             @Selection Region region,
             @Arg(desc = "The expression to use", variable = true)
-            List<String> expression,
+                    List<String> expression,
             @Switch(name = 'r', desc = "Use the game's coordinate origin")
-            boolean useRawCoords,
+                    boolean useRawCoords,
             @Switch(name = 'o', desc = "Use the placement's coordinate origin")
-            boolean offset,
+                    boolean offset,
             @Switch(name = 'c', desc = "Use the selection's center as origin")
-            boolean offsetCenter
+                    boolean offsetCenter
     ) throws WorldEditException {
         final Vector3 zero;
         Vector3 unit;
@@ -837,11 +837,11 @@ public class RegionCommands {
             Actor actor, EditSession editSession,
             @Selection Region region,
             @Arg(desc = "Thickness of the shell to leave", def = "0")
-            int thickness,
+                    int thickness,
             @Arg(desc = "The pattern of blocks to replace the hollowed area with", def = "air")
-            Pattern pattern,
+                    Pattern pattern,
             @ArgFlag(name = 'm', desc = "Mask to hollow with")
-            Mask mask
+                    Mask mask
     ) throws WorldEditException {
         checkCommandArgument(thickness >= 0, "Thickness must be >= 0");
         //FAWE start > the mask will have been initialised with a WorldWrapper extent (very bad/slow)
@@ -871,9 +871,9 @@ public class RegionCommands {
     public int forest(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "The type of tree to place", def = "tree")
-            TreeType type,
+                    TreeType type,
             @Arg(desc = "The density of the forest", def = "5")
-            double density
+                    double density
     ) throws WorldEditException {
         checkCommandArgument(0 <= density && density <= 100, "Density must be in [0, 100]");
         int affected = editSession.makeForest(region, density / 100, type);
@@ -893,7 +893,7 @@ public class RegionCommands {
     public int flora(
             Actor actor, EditSession editSession, @Selection Region region,
             @Arg(desc = "The density of the forest", def = "5")
-            double density
+                    double density
     ) throws WorldEditException {
         checkCommandArgument(0 <= density && density <= 100, "Density must be in [0, 100]");
         density = density / 100;
